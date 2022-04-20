@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<head>
+    <title>#{projectGroups.project.title}</title>
+</head>
+<body>
+<h2>#{projectGroups.project.title}</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ui:repeat value="#{projectGroups.project.groups}" var="group">
+        <tr>
+            <td>#{group.id}</td>
+            <td>#{group.name}</td>
+        </tr>
+    </ui:repeat>
+    </tbody>
+</table>
+</body>
+</html>

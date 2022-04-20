@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<head>
+    <title>Users</title>
+</head>
+<body>
+
+<h2>Users</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Groups count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ui:repeat value="#{users.allUsers}" var="user">
+        <tr>
+            <th scope="row">#{user.id}</th>
+            <td>#{user.name}</td>
+            <td>#{user.groups.size()}</td>
+        </tr>
+    </ui:repeat>
+    </tbody>
+</table>
+
+<h:form>
+    <div>
+        <label>Name: </label>
+        <h:inputText value="#{users.userToCreate.name}" required="true" />
+    </div>
+    <h:commandButton value="Add" actionListener="#{users.createUser()}" action="/users/users.xhtml?faces-redirect=true"/>
+</h:form>
+</body>
+</html>

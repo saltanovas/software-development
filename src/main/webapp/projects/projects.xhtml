@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<head>
+    <title>Projects</title>
+</head>
+<body>
+
+<h2>Projects</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Group count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ui:repeat value="#{projects.allProjects}" var="project">
+        <tr>
+            <th scope="row">#{project.id}</th>
+            <td>#{project.title}</td>
+            <td>#{project.groups.size()}</td>
+            <td>
+                <a href="/software-development/projects/projectGroups.xhtml?projectId=#{project.id}">Groups</a>
+            </td>
+        </tr>
+    </ui:repeat>
+    </tbody>
+</table>
+
+<h:form>
+    <div>
+        <label>Name: </label>
+        <h:inputText value="#{projects.projectToCreate.title}" required="true"/>
+    </div>
+    <h:commandButton value="Add" actionListener="#{projects.createProject}"
+                     action="/projects/projects.xhtml?faces-redirect=true"/>
+</h:form>
+
+
+</body>
+</html>

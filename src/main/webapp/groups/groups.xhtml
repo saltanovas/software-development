@@ -1,0 +1,69 @@
+<!DOCTYPE xhtml>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+<h:head>
+    <title>Groups</title>
+</h:head>
+<body>
+
+<h2>Groups</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Project</th>
+        <th scope="col">Users count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ui:repeat value="#{groups.allGroups}" var="group">
+        <tr>
+            <td>#{group.id}</td>
+            <td>#{group.name}</td>
+            <td>#{group.project.title}</td>
+            <td>#{group.users.size()}</td>
+        </tr>
+    </ui:repeat>
+    </tbody>
+</table>
+
+
+<h:form>
+    <div>
+        <label>Project: </label>
+        <h:selectOneMenu value="#{groups.groupToCreate.project}" filter="true"
+                         filterMatchMode="contains" required="true"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItems value="#{projects.allProjects}" var="project"
+                           itemLabel="#{project.title}" itemValue="#{project}"/>
+        </h:selectOneMenu>
+    </div>
+
+    <div>
+        <label>Users: </label>
+        <h:selectManyMenu value="#{groups.groupToCreate.users}" filter="true" filterMatchMode="contains"
+                          showCheckbox="true" converter="omnifaces.SelectItemsConverter" required="true">
+            <f:selectItems value="#{users.allUsers}" var="user"
+                           itemLabel="#{user.name}" itemValue="#{user}"/>
+        </h:selectManyMenu>
+    </div>
+
+    <div>
+        <label>Name: </label>
+        <h:inputText value="#{groups.groupToCreate.name}" required="true"/>
+    </div>
+
+
+    <h:commandButton value="Add" actionListener="#{groups.createGroup}"
+                     action="/groups/groups.xhtml?faces-redirect=true"/>
+</h:form>
+
+</body>
+</html>

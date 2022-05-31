@@ -1,7 +1,5 @@
 package com.lt.vu.softwaredevelopment.entities;
 
-import javax.persistence.Entity;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +24,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Integer id;
+    private int id;
 
     @NotNull
     @Column(nullable = false)
@@ -35,4 +33,12 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "users")
     private Set<Group> groups;
 
+    @Version
+    @Column(name = "opt_lock_version")
+    private int version;
+
+    public User(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
 }

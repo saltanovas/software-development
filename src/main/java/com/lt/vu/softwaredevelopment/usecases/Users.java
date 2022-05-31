@@ -1,21 +1,21 @@
 package com.lt.vu.softwaredevelopment.usecases;
 
+import com.lt.vu.softwaredevelopment.cdi.IUserDao;
 import com.lt.vu.softwaredevelopment.entities.User;
-import com.lt.vu.softwaredevelopment.persistence.UserDao;
+import com.lt.vu.softwaredevelopment.interceptors.LoggedInvocation;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Model
 public class Users {
 
     @Inject
-    private UserDao userDao;
+    private IUserDao userDao;
 
     @Getter
     private List<User> allUsers;
@@ -29,7 +29,7 @@ public class Users {
         loadAllUsers();
     }
 
-    @Transactional
+    @LoggedInvocation
     public void createUser() {
         userDao.persist(userToCreate);
     }

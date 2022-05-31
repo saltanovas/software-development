@@ -21,7 +21,7 @@ public class GroupDao {
         this.em.persist(group);
     }
 
-    public Group findOne(Long id) {
+    public Group findOne(int id) {
         return em.find(Group.class, id);
     }
 }

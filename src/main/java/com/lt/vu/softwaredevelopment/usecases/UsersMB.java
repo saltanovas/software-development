@@ -1,7 +1,7 @@
 package com.lt.vu.softwaredevelopment.usecases;
 
-import com.lt.vu.softwaredevelopment.mybatis.dao.UserMapper;
 import com.lt.vu.softwaredevelopment.mybatis.User;
+import com.lt.vu.softwaredevelopment.mybatis.dao.UserMapper;
 import lombok.Getter;
 import lombok.Setter;
 

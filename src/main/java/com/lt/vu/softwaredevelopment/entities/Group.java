@@ -22,7 +22,7 @@ public class Group implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long id;
+    private int id;
 
     @NotNull
     @Column(nullable = false)

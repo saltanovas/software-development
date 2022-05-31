@@ -23,7 +23,7 @@ public class Project implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String title;

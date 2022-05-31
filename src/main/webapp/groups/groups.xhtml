@@ -1,4 +1,4 @@
-<!DOCTYPE xhtml>
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -45,24 +45,29 @@
                            itemLabel="#{project.title}" itemValue="#{project}"/>
         </h:selectOneMenu>
     </div>
-
     <div>
         <label>Users: </label>
-        <h:selectManyMenu value="#{groups.groupToCreate.users}" filter="true" filterMatchMode="contains"
-                          showCheckbox="true" converter="omnifaces.SelectItemsConverter" required="true">
+        <h:selectManyCheckbox value="#{groups.groupToCreate.users}" filter="true" filterMatchMode="contains"
+                          showCheckbox="true" styleClass="manymenu-advanced"
+                          converter="omnifaces.SelectItemsConverter">
             <f:selectItems value="#{users.allUsers}" var="user"
                            itemLabel="#{user.name}" itemValue="#{user}"/>
-        </h:selectManyMenu>
+        </h:selectManyCheckbox>
     </div>
-
     <div>
         <label>Name: </label>
         <h:inputText value="#{groups.groupToCreate.name}" required="true"/>
     </div>
 
-
     <h:commandButton value="Add" actionListener="#{groups.createGroup}"
                      action="/groups/groups.xhtml?faces-redirect=true"/>
+</h:form>
+
+<h:form>
+    <h:outputText value="#{suggestRandomProject.getAsyncTaskStatus()}" />
+    <h:commandButton value="Suggested project" disabled="#{suggestRandomProject.isAsyncTaskRunning()}" action="#{suggestRandomProject.generate()}">
+        <f:param name="project" value="#{projects.allProjects}" />
+    </h:commandButton>
 </h:form>
 
 </body>

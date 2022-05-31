@@ -1,7 +1,5 @@
 package com.lt.vu.softwaredevelopment.mybatis;
 
-import javax.enterprise.inject.Model;
-
 public class Group {
     /**
      *
